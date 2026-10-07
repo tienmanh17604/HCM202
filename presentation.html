@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tư Tưởng Hồ Chí Minh Về Đảng Cộng Sản Việt Nam & Đánh Giá Chiến Dịch “Đốt Lò” | HCM202</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Lexend:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #030712;
+      --theme-primary: #38bdf8;
+      --theme-secondary: #fbbf24;
+      --theme-accent: #f43f5e;
+      --theme-glow: rgba(56, 189, 248, 0.35);
+      --panel-bg: rgba(9, 15, 30, 0.82);
+      --panel-border: rgba(255, 255, 255, 0.16);
+      --text-main: #f8fafc;
+      --text-sub: #cbd5e1;
+      --text-muted: #94a3b8;
+    }
+
+    /* ── SINGLE UNIFIED THEME (no per-station color changes) ── */
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--bg);
+      font-family: 'Be Vietnam Pro', 'Lexend', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text-main);
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background 0.6s ease;
+    }
+
+    /* ── CINEMATIC 3D BACKDROP & PARALLAX CANVAS ── */
+    #cinematic-backdrop {
+      position: fixed;
+      inset: -40px;
+      z-index: 1;
+      overflow: hidden;
+      perspective: 1200px;
+      background: #020617;
+      pointer-events: none;
+    }
+
+    .backdrop-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transform: scale(1) translate3d(0, 0, 0);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: brightness(0.85) contrast(1.08) saturate(1.12);
+      will-change: opacity;
+    }
+
+    .backdrop-slide.active {
+      opacity: 1;
+      transform: scale(1) translate3d(var(--para-x, 0px), var(--para-y, 0px), 0);
+    }
+
+    /* ── 3D CANVAS FULLSCREEN (FLOATING COSMIC PARTICLES) ── */
+    #canvas-container {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* ── INTERACTIVE HOTSPOTS OVERLAY ── */
+    #hotspot-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 10;
+      pointer-events: none;
+      transform: translate3d(var(--para-x, 0px), var(--para-y, 0px), 0);
+      will-change: transform;
+    }
+
+    .hotspot-node {
+      position: absolute;
+      width: 38px;
+      height: 38px;
+      pointer-events: auto;
+      cursor: pointer;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: hotspotFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .hotspot-node:hover {
+      transform: translate(-50%, -50%) scale(1.22);
+      z-index: 15;
+    }
+
+    .hotspot-beacon {
+      width: 38px;
+      height: 38px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hotspot-core {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 14px #ffffff, 0 0 28px var(--node-color, #38bdf8), 0 0 45px var(--node-color, #38bdf8);
+      position: relative;
+      z-index: 2;
+    }
+
+    .hotspot-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid var(--node-color, #38bdf8);
+      animation: hotspotRipple 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+    }
+
+    .hotspot-ring.delayed {
+      animation-delay: 1.1s;
+    }
+
+    @keyframes hotspotRipple {
+      0% { transform: scale(0.4); opacity: 1; }
+      100% { transform: scale(2.4); opacity: 0; }
+    }
+
+    @keyframes hotspotFadeIn {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+      100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .hotspot-label {
+      position: absolute;
+      left: calc(100% + 10px);
+      top: 50%;
+      background: rgba(11, 20, 42, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #f8fafc;
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      backdrop-filter: blur(16px);
+      white-space: nowrap;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.65), 0 0 18px var(--node-color, #38bdf8);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-50%) translateX(-8px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .hotspot-node:hover .hotspot-label {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(-50%) translateX(0);
+      background: rgba(7, 16, 36, 0.98);
+      border-color: var(--node-color, #38bdf8);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.75), 0 0 24px var(--node-color, #38bdf8);
+      color: #ffffff;
+    }
+
+    /* ── CINEMATIC AMBIENT GRADIENTS & VIGNETTE ── */
+    #ambient-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+      background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(2, 6, 23, 0.78) 96%),
+                  radial-gradient(circle at 15% 25%, var(--theme-glow), transparent 60%),
+                  radial-gradient(circle at 85% 75%, var(--theme-glow), transparent 60%);
+      transition: background 0.6s ease;
+    }
+
+    /* ── TOP BAR (HEADER) ── */
+    #header-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      background: linear-gradient(to bottom, rgba(3, 7, 18, 0.95) 30%, transparent);
+      pointer-events: none;
+    }
+
+    .brand-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--panel-border);
+      padding: 8px 18px;
+      border-radius: 999px;
+      backdrop-filter: blur(16px);
+      pointer-events: auto;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--theme-primary);
+      box-shadow: 0 0 14px var(--theme-primary);
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .brand-title {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .brand-title span { color: var(--theme-secondary); }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      pointer-events: auto;
+    }
+
+    .counter-pill {
+      font-size: 14px;
+      font-weight: 800;
+      padding: 7px 18px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--panel-border);
+      color: var(--text-sub);
+      backdrop-filter: blur(16px);
+    }
+
+    .counter-pill strong { color: var(--theme-primary); font-size: 16px; }
+
+    /* ═══════════════════════════════════════════════════════════
+       UNIFIED NARRATIVE HUD SIDEBAR (BẢNG ĐIỀU KHIỂN NỘI DUNG SANG TRỌNG)
+       ═══════════════════════════════════════════════════════════ */
+    #narrative-hud {
+      position: fixed;
+      top: 76px;
+      bottom: 84px;
+      left: 32px;
+      width: 440px;
+      max-width: calc(100vw - 64px);
+      z-index: 25;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 26px;
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 35px var(--theme-glow);
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      pointer-events: auto;
+      overflow: visible;
+    }
+
+    #narrative-hud.collapsed {
+      transform: translateX(calc(-100% - 40px));
+    }
+
+    /* Nút Thu Gọn / Mở Rộng Bảng Chữ (Zen Mode) */
+    .hud-toggle-btn {
+      position: absolute;
+      top: 20px;
+      right: -42px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid var(--panel-border);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+      transition: all 0.25s ease;
+      z-index: 30;
+      backdrop-filter: blur(12px);
+    }
+
+    .hud-toggle-btn:hover {
+      background: var(--theme-primary);
+      color: #030712;
+      transform: scale(1.1);
+    }
+
+    #narrative-hud.collapsed .hud-toggle-btn {
+      right: -46px;
+      background: var(--theme-primary);
+      color: #030712;
+      box-shadow: 0 0 20px var(--theme-primary);
+    }
+
+    #narrative-hud.collapsed .hud-toggle-btn span {
+      transform: rotate(180deg);
+    }
+
+    /* Khu vực cuộn nội dung siêu mượt */
+    .hud-scrollable {
+      padding: 24px 26px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hud-scrollable::-webkit-scrollbar {
+      width: 5px;
+    }
+    .hud-scrollable::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+    }
+
+    .station-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--theme-primary);
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #ffffff;
+      margin-bottom: 10px;
+      letter-spacing: -0.015em;
+    }
+
+    .card-title .acc-gold { color: #fbbf24; }
+    .card-title .acc-cyan { color: #38bdf8; }
+    .card-title .acc-red { color: #f43f5e; }
+    .card-title .acc-green { color: #10b981; }
+    .card-title .acc-purple { color: #c084fc; }
+
+    .card-summary {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-sub);
+    }
+
+    .hud-divider {
+      height: 1px;
+      background: linear-gradient(90deg, var(--theme-primary), transparent 80%);
+      opacity: 0.35;
+      margin: 2px 0;
+    }
+
+    .sec-title {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--theme-primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Transition box tích hợp bên dưới HUD */
+    .hud-transition-card {
+      margin-top: auto;
+      padding: 11px 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--panel-border);
+    }
+
+    .trans-pill {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: var(--theme-secondary);
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .trans-content {
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    /* Tối ưu các phần tử con bên trong s-content */
+    .points-list { display: flex; flex-direction: column; gap: 10px; }
+    .point-item { display: flex; gap: 10px; font-size: 14.5px; line-height: 1.6; color: rgba(255, 255, 255, 0.9); }
+    .point-bullet { flex-shrink: 0; width: 24px; height: 24px; border-radius: 6px; background: rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: center; font-size: 12px; margin-top: 2px; }
+
+    .tier-stack-group { display: flex; flex-direction: column; gap: 10px; }
+    .tier-card { padding: 12px 14px; border-radius: 12px; display: flex; gap: 10px; font-size: 14px; line-height: 1.5; }
+    .tier-card.tier-top { border: 1px solid rgba(244, 63, 94, 0.4); background: rgba(244, 63, 94, 0.08); }
+    .tier-card.tier-mid { border: 1px solid rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.08); }
+    .tier-card.tier-base { border: 1px solid rgba(251, 191, 36, 0.4); background: rgba(251, 191, 36, 0.08); }
+
+    .convergence-grid, .job-grid { display: flex; flex-direction: column; gap: 10px; }
+    .conv-box, .job-card { padding: 12px 14px; border-radius: 12px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--panel-border); font-size: 14px; line-height: 1.55; }
+    .conv-tag, .job-header { font-size: 12.5px; font-weight: 800; color: var(--theme-primary); margin-bottom: 4px; }
+
+    .pillars-grid { display: flex; flex-direction: column; gap: 10px; }
+    .pillar-box { padding: 12px 14px; border-radius: 12px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--panel-border); text-align: left; display: flex; gap: 12px; align-items: center; font-size: 14px; }
+    .pillar-icon { font-size: 22px; }
+    .marx-warning-banner { padding: 11px 14px; border-radius: 10px; background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); font-size: 13.5px; color: #fca5a5; line-height: 1.5; }
+
+    .region-row { padding: 11px 14px; border-radius: 10px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--panel-border); display: flex; gap: 10px; align-items: center; font-size: 14px; margin-bottom: 4px; }
+    .gso-stat-chip { padding: 9px 13px; border-radius: 8px; background: rgba(56, 189, 248, 0.10); border: 1px solid rgba(56, 189, 248, 0.3); font-size: 13px; color: #bae6fd; display: flex; gap: 6px; align-items: center; }
+
+    .summary-decree { padding: 12px 14px; border-radius: 10px; background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.3); display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.55; margin-bottom: 6px; }
+    .decree-num { width: 24px; height: 24px; border-radius: 50%; background: var(--theme-primary); color: #030712; font-weight: 900; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    /* ── INSPECT CARD (GÓC DƯỚI PHẢI, TRÊN BOTTOM DOCK) ── */
+    #inspect-card {
+      position: fixed;
+      bottom: 90px;
+      right: 32px;
+      z-index: 22;
+      width: 380px;
+      max-width: calc(100vw - 64px);
+      max-height: calc(100vh - 180px);
+      overflow-y: auto;
+      background: rgba(8, 14, 28, 0.94);
+      border: 1.5px solid var(--theme-primary);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), 0 0 40px var(--theme-glow);
+      border-radius: 22px;
+      padding: 18px 20px;
+      backdrop-filter: blur(30px);
+      pointer-events: auto;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      visibility: hidden;
+    }
+
+    #inspect-card.active {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+
+    #inspect-card.pos-top {
+      top: 86px !important;
+      bottom: auto !important;
+    }
+
+    #inspect-card.pos-bottom {
+      bottom: 90px !important;
+      top: auto !important;
+    }
+
+    .inspect-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 8px;
+      user-select: none;
+    }
+
+    .inspect-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .inspect-btn-action {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.7);
+      cursor: pointer;
+      font-size: 13px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .inspect-btn-action:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border-color: var(--theme-primary);
+    }
+
+    .inspect-badge {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--theme-primary);
+    }
+
+    .inspect-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 17px;
+      padding: 2px 7px;
+      border-radius: 5px;
+      transition: color 0.2s;
+    }
+
+    .inspect-close:hover { color: #fff; }
+
+    .inspect-title {
+      font-size: 16px;
+      font-weight: 850;
+      color: #fff;
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+
+    .inspect-body {
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.92);
+      margin-bottom: 12px;
+    }
+
+    .inspect-footer {
+      font-size: 12px;
+      color: var(--theme-secondary);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--panel-border);
+      border-radius: 10px;
+      padding: 8px 12px;
+      line-height: 1.5;
+    }
+
+
+    /* ── BOTTOM DOCK CONTROLS ── */
+    #bottom-dock {
+      position: fixed;
+      bottom: 20px;
+      left: 32px;
+      right: 32px;
+      z-index: 22;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      pointer-events: none;
+      flex-wrap: wrap;
+    }
+
+    .station-nav-pills {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      pointer-events: auto;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 5px 8px;
+    }
+
+    .station-pill-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: rgba(255, 255, 255, 0.65);
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 800;
+      padding: 6px 12px;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .station-pill-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+
+    .station-pill-btn.active {
+      background: var(--theme-primary);
+      color: #030712;
+      font-weight: 900;
+      box-shadow: 0 0 14px var(--theme-primary);
+    }
+
+    .hud-next-step-btn {
+      margin-top: 10px;
+      width: 100%;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(2, 132, 199, 0.35));
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      color: #7dd3fc;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 9px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .hud-next-step-btn:hover {
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #fff;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .header-nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--panel-border);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .header-nav-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: var(--theme-primary);
+    }
+
+    .header-back-home-btn {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fde047;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      margin-left: 6px;
+    }
+
+    .header-back-home-btn:hover {
+      background: rgba(245, 158, 11, 0.3);
+      color: #fff;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      pointer-events: auto;
+    }
+
+    .dock-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: 14px;
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      backdrop-filter: blur(16px);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-prev {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--panel-border);
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .btn-prev:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff;
+    }
+    .btn-prev:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .btn-next {
+      background: linear-gradient(135deg, var(--theme-primary), #0284c7);
+      color: #fff;
+      box-shadow: 0 4px 22px var(--theme-glow);
+    }
+    .btn-next:hover {
+      filter: brightness(1.15);
+      transform: translateY(-1px);
+    }
+
+    /* btn-auto removed */
+
+    .key-hints {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.45);
+      pointer-events: auto;
+    }
+
+    kbd {
+      padding: 3px 8px;
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      font-family: inherit;
+      font-size: 10.5px;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* ── PROGRESS BAR ── */
+    #progress-line {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary));
+      z-index: 100;
+      transition: width 0.4s ease;
+      box-shadow: 0 0 14px var(--theme-primary);
+    }
+
+    /* ── SCENE FADE TRANSITION ── */
+    #fade-overlay {
+      position: fixed;
+      inset: 0;
+      background: #030712;
+      z-index: 18;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    #fade-overlay.fading { opacity: 0.85; }
+
+    /* ── STYLING ENHANCEMENTS FOR HCM202 TOPIC ── */
+    .speech-tip-box {
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-top: 10px;
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: #e0f2fe;
+    }
+    .speech-tip-box b {
+      color: #38bdf8;
+    }
+    .flow-diagram-box {
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin: 10px 0;
+      text-align: center;
+    }
+    .flow-step {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .flow-step-dang {
+      background: rgba(239, 68, 68, 0.2);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+    .flow-step-nn {
+      background: rgba(56, 189, 248, 0.2);
+      color: #7dd3fc;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+    }
+    .flow-step-dan {
+      background: rgba(251, 191, 36, 0.2);
+      color: #fde047;
+      border: 1px solid rgba(251, 191, 36, 0.4);
+    }
+    .flow-arrow {
+      color: var(--text-muted);
+      margin: 4px 0;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .stat-badge-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 10px 0;
+    }
+    .stat-badge-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 10px 12px;
+      text-align: center;
+    }
+    .stat-badge-num {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      color: #fbbf24;
+    }
+    .stat-badge-label {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ── RESPONSIVENESS ── */
+    @media (max-width: 1024px) {
+      #card-primary { max-width: 380px; padding: 20px 24px; top: 76px; left: 24px; }
+      #card-secondary { max-width: 420px; padding: 20px 24px; bottom: 80px; }
+      .layout-hero-wide, .layout-convergence-strip, .layout-trio-pillars, .layout-job-matrix, .layout-map-legend, .layout-grand-summary, .layout-tier-stack {
+        max-width: 440px;
+      }
+      .convergence-grid, .job-grid { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      #card-primary { position: static; max-width: 100%; margin: 76px 16px 8px; }
+      #card-secondary { position: static; max-width: 100%; margin: 8px 16px; }
+      #dot-nav { display: none; }
+    }
+  </style>
+</head>
+<body class="theme-0">
+
+  <!-- PROGRESS BAR -->
+  <div id="progress-line" style="width: 14.28%"></div>
+
+  <!-- CINEMATIC 3D ART BACKDROP -->
+  <div id="cinematic-backdrop">
+    <div class="backdrop-slide active" id="slide-0" style="background-image: url('station0.jpg');"></div>
+    <div class="backdrop-slide" id="slide-1" style="background-image: url('station1.jpg');"></div>
+    <div class="backdrop-slide" id="slide-2" style="background-image: url('station2.jpg');"></div>
+    <div class="backdrop-slide" id="slide-3" style="background-image: url('station3.jpg');"></div>
+    <div class="backdrop-slide" id="slide-4" style="background-image: url('station4.jpg');"></div>
+    <div class="backdrop-slide" id="slide-5" style="background-image: url('station5.jpg');"></div>
+    <div class="backdrop-slide" id="slide-6" style="background-image: url('station6.jpg');"></div>
+  </div>
+
+  <!-- 3D FLOATING COSMIC PARTICLES CANVAS -->
+  <div id="canvas-container"></div>
+
+  <!-- INTERACTIVE HOTSPOTS OVERLAY -->
+  <div id="hotspot-overlay"></div>
+
+  <div id="ambient-glow"></div>
+  <div id="fade-overlay"></div>
+
+  <!-- HEADER BAR -->
+  <header id="header-bar">
+    <div class="brand-badge">
+      <div class="brand-dot"></div>
+      <div class="brand-title">HCM202 · Chuyên Đề · <span>Tư Tưởng HCM & Chiến Dịch "Đốt Lò"</span></div>
+    </div>
+    <div class="header-actions">
+      <button class="header-nav-btn" onclick="prevStation()" title="Trạm trước (Phím ←)">◀</button>
+      <div class="counter-pill" id="counter-pill-header" title="Đang ở trạm">TRẠM <strong id="current-station-num">01</strong> / 07</div>
+      <button class="header-nav-btn" onclick="nextStation()" title="Trạm tiếp theo (Phím Space / →)">▶</button>
+      <a href="/" class="header-back-home-btn" title="Quay lại Đấu trường trò chơi">🎮 Đấu Trường</a>
+    </div>
+  </header>
+
+  <!-- UNIFIED NARRATIVE HUD SIDEBAR (BẢNG THÔNG ĐIỆP HỢP NHẤT THANH THOÁT) -->
+  <aside id="narrative-hud">
+    <!-- Nút Thu Gọn / Mở Rộng Bảng (Phím H) -->
+    <button id="btn-toggle-hud" class="hud-toggle-btn" onclick="toggleHud()" title="Thu gọn / Mở rộng bảng nội dung (Phím H)">
+      <span id="hud-toggle-icon">◀</span>
+    </button>
+
+    <div class="hud-scrollable">
+      <!-- PHẦN 1: TIÊU ĐỀ & ĐỀ TỰA TRẠM -->
+      <div class="hud-hero">
+        <div class="station-tag" id="p-tag">TRẠM 01 · BỐI CẢNH & HỘI NGHỊ THÀNH LẬP ĐẢNG</div>
+        <h1 class="card-title" id="p-title">Quá Trình Thành Lập Đảng & <span class="acc-cyan">Vai Trò Chuẩn Bị Của Hồ Chí Minh</span></h1>
+        <p class="card-summary" id="p-summary">Trước năm 1930, phong trào yêu nước khủng hoảng sâu sắc về đường lối. Sự xuất hiện của 3 tổ chức cộng sản năm 1929 đặt ra yêu cầu lịch sử sống còn: thống nhất thành một chính đảng duy nhất dưới sự chủ trì của lãnh tụ Nguyễn Ái Quốc tại Hương Cảng (1930).</p>
+      </div>
+
+      <div class="hud-divider"></div>
+
+      <!-- PHẦN 2: NỘI DUNG PHÂN TÍCH CHUYÊN SÂU CỦA TRẠM -->
+      <div id="card-secondary">
+        <div class="sec-header">
+          <div class="sec-title" id="s-title">3 TỔ CHỨC CỘNG SẢN & GIẢI MÃ: 5 HAY 7 NGƯỜI THAM DỰ?</div>
+        </div>
+        <div id="s-content">
+          <!-- Dynamic custom layout injected per station -->
+        </div>
+      </div>
+
+      <!-- PHẦN 3: LỜI DẪN CHUYỂN CẢNH TIẾP BƯỚC -->
+      <div class="hud-transition-card">
+        <div class="trans-pill">Tiếp bước luận điểm:</div>
+        <div class="trans-content" id="trans-text">Từ sự ra đời lịch sử ấy, Chủ tịch Hồ Chí Minh đã làm sáng tỏ tính tất yếu và sứ mệnh lãnh đạo tuyệt đối của Đảng đối với dân tộc.</div>
+        <button id="hud-btn-next" class="hud-next-step-btn" onclick="nextStation()">
+          Chuyển Sang Trạm 02 ➔
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- INSPECT TOOLTIP CARD (HIỆN KHI RÊ CHUỘT / TAP VÀO VẬT THỂ) -->
+  <div id="inspect-card">
+    <div class="inspect-top" title="Kéo để di chuyển vị trí">
+      <div class="inspect-badge">
+        <span id="ins-icon">🔍</span>
+        <span id="ins-badge">GIẢI MÃ LÝ LUẬN & THỰC TIỄN</span>
+      </div>
+      <div class="inspect-actions">
+        <button class="inspect-btn-action" id="ins-pos-btn" onclick="toggleInspectPosition(event)" title="Đổi vị trí Lên / Xuống (Tránh che điểm)">⇅ Đổi vị trí</button>
+        <button class="inspect-close" onclick="closeInspect()" title="Đóng">✕</button>
+      </div>
+    </div>
+    <h3 class="inspect-title" id="ins-title">Tiêu đề vật thể</h3>
+    <div class="inspect-body" id="ins-body">Nội dung học thuật chi tiết của vật thể...</div>
+    <div class="inspect-footer" id="ins-footer">💡 Góc nhìn biện chứng</div>
+  </div>
+
+
+  <!-- BOTTOM DOCK CONTROLS -->
+  <div id="bottom-dock">
+    <div class="station-nav-pills" id="station-pills">
+      <button class="station-pill-btn active" onclick="goToStation(0)" title="Trạm 01: Quá trình thành lập Đảng">01</button>
+      <button class="station-pill-btn" onclick="goToStation(1)" title="Trạm 02: Tính tất yếu & Vai trò lãnh đạo">02</button>
+      <button class="station-pill-btn" onclick="goToStation(2)" title="Trạm 03: Đảng là đạo đức, là văn minh">03</button>
+      <button class="station-pill-btn" onclick="goToStation(3)" title="Trạm 04: Nguyên tắc hoạt động & Cán bộ">04</button>
+      <button class="station-pill-btn" onclick="goToStation(4)" title="Trạm 05: Chiến dịch Đốt lò là gì">05</button>
+      <button class="station-pill-btn" onclick="goToStation(5)" title="Trạm 06: Thành quả & Kỷ nguyên mới">06</button>
+      <button class="station-pill-btn" onclick="goToStation(6)" title="Trạm 07: Đánh giá & 5 Kiến nghị">07</button>
+    </div>
+
+    <div class="nav-controls">
+      <button id="btn-prev" class="dock-btn btn-prev" onclick="prevStation()" title="Quay lại trạm trước (Phím ←)" disabled>
+        <span>◀ Trạm Trước</span>
+      </button>
+
+      <button id="btn-next" class="dock-btn btn-next" onclick="nextStation()" title="Chuyển sang trạm tiếp theo (Phím Space hoặc →)">
+        <span id="btn-next-text">Tiếp Theo: Trạm 02 ➔</span>
+      </button>
+    </div>
+
+    <div class="key-hints">
+      <kbd>←</kbd> <kbd>→</kbd> <kbd>Space</kbd> <span>Chuyển trạm</span>
+      <span style="margin: 0 4px">•</span>
+      <kbd>H</kbd> <span>Ẩn/Hiện bảng</span>
+      <span style="margin: 0 4px">•</span>
+      <kbd>F</kbd> <span>Toàn màn hình</span>
+    </div>
+  </div>
+
+  <!-- SCRIPT: DATA + LOGIC + THREE.JS ENGINES -->
+  <script>
+        /* ═══════════════════════════════════════════════════════════
+       1. ACADEMIC DATA: TƯ TƯỞNG HỒ CHÍ MINH VỀ ĐCSVN & "ĐỐT LÒ"
+       ═══════════════════════════════════════════════════════════ */
+    const STATIONS = [
+      {
+        id: 0,
+        themeClass: 'theme-0',
+        tag: 'TRẠM 01 · BỐI CẢNH & HỘI NGHỊ THÀNH LẬP ĐẢNG',
+        title: 'Quá Trình Thành Lập Đảng & <span class="acc-cyan">Vai Trò Chuẩn Bị Của Hồ Chí Minh</span>',
+        summary: 'Trước năm 1930, phong trào yêu nước khủng hoảng sâu sắc về đường lối. Sự xuất hiện của 3 tổ chức cộng sản năm 1929 đặt ra yêu cầu lịch sử sống còn: thống nhất thành một chính đảng duy nhất dưới sự chủ trì của lãnh tụ Nguyễn Ái Quốc tại Hương Cảng (1930).',
+        layoutClass: 'layout-hero-wide',
+        secTitle: '3 TỔ CHỨC CỘNG SẢN & GIẢI MÃ: 5 HAY 7 NGƯỜI THAM DỰ?',
+        renderContent: () => `
+          <div class="points-list">
+            <div class="point-item">
+              <div class="point-bullet">🚩</div>
+              <div class="point-text"><b>Bối cảnh 1929 – 3 Tổ chức Cộng sản:</b> Cuối năm 1929 xuất hiện <i>Đông Dương Cộng sản Đảng</i>, <i>An Nam Cộng sản Đảng</i> và <i>Đông Dương Cộng sản Liên đoàn</i>. Hoạt động phân tán đòi hỏi cấp bách phải hợp nhất thành một Đảng duy nhất để lãnh đạo phong trào cách mạng.</div>
+            </div>
+            <div class="point-item">
+              <div class="point-bullet">📜</div>
+              <div class="point-text"><b>Hội nghị Cửu Long (Hương Cảng, 1930):</b> Nguyễn Ái Quốc chủ trì hội nghị hợp nhất, thành lập <b>Đảng Cộng sản Việt Nam</b> và thông qua 4 văn kiện cương lĩnh vắn tắt đầu tiên (Chánh cương, Sách lược, Chương trình, Điều lệ).</div>
+            </div>
+          </div>
+
+          <div class="speech-tip-box">
+            <b>❓ VẤN ĐỀ THẦY ĐẶT HỎI: 5 HAY 7 NGƯỜI THAM DỰ?</b><br>
+            • <b>5 người:</b> Thành phần <u>đại biểu chính thức</u> có quyền biểu quyết (Nguyễn Ái Quốc chủ trì + Trịnh Đình Cửu, Nguyễn Đức Cảnh [ĐDCSĐ] + Nguyễn Thiệu, Châu Văn Liêm [ANCSĐ]. Đại biểu ĐDCSLĐ không đến kịp).<br>
+            • <b>7 người:</b> Cách tính gộp thêm 2 đồng chí giúp việc, chuẩn bị và hỗ trợ Hội nghị là <b>Lê Hồng Sơn</b> và <b>Hồ Tùng Mậu</b>.<br>
+            🎤 <i>Khuyên dùng khi thuyết trình:</i> Khi trả lời câu hỏi "Có bao nhiêu đại biểu tham dự Hội nghị?", nhóm chọn đáp án <b>5 người</b> (theo Báo cáo tóm tắt chính thức của Hội nghị).
+          </div>
+        `,
+        transition: 'Từ sự ra đời lịch sử ấy, Chủ tịch Hồ Chí Minh đã làm sáng tỏ tính tất yếu và sứ mệnh lãnh đạo tuyệt đối của Đảng đối với dân tộc.',
+        cam: { x: 0, y: 3, z: 22 },
+        tgt: { x: 0, y: 0, z: 0 }
+      },
+      {
+        id: 1,
+        themeClass: 'theme-1',
+        tag: 'TRẠM 02 · TÍNH TẤT YẾU & SỨ MỆNH LÃNH ĐẠO',
+        title: 'Tính Tất Yếu & <span class="acc-red">Vai Trò Lãnh Đạo</span> Của ĐCSVN',
+        summary: 'Cách mạng muốn thắng lợi trước hết phải có Đảng cách mệnh vững vàng. Đảng vừa là người lãnh đạo trí tuệ, vừa là người đầy tớ trung thành của nhân dân.',
+        layoutClass: 'layout-tier-stack',
+        secTitle: '3 Ý NGHĨA TẤT YẾU & QUAN HỆ ĐẢNG - DÂN',
+        renderContent: () => `
+          <div class="tier-stack-group">
+            <div class="tier-card tier-top">
+              <div class="point-bullet" style="background:rgba(244,63,94,0.2);color:#fb7185">①</div>
+              <div>
+                <b style="color:#fb7185;font-size:13.5px">Lực Lượng Lãnh Đạo Có Tổ Chức Chặt Chẽ</b>
+                <p style="font-size:12.5px;color:#f1f5f9;line-height:1.45;margin-top:2px">Cách mạng không thể thành công nếu chỉ dựa vào tinh thần yêu nước tự phát; phải có Đảng tiên phong dẫn đường.</p>
+              </div>
+            </div>
+            <div class="tier-card tier-mid">
+              <div class="point-bullet" style="background:rgba(56,189,248,0.2);color:#38bdf8">②</div>
+              <div>
+                <b style="color:#38bdf8;font-size:13.5px">Đề Ra Đường Lối & Chịu Trách Nhiệm Trước Dân</b>
+                <p style="font-size:12.5px;color:#f1f5f9;line-height:1.45;margin-top:2px">Đảng vạch ra đường lối đúng đắn, tổ chức quần chúng, quy tụ sức mạnh đại đoàn kết và kiểm tra thực hiện.</p>
+              </div>
+            </div>
+            <div class="tier-card tier-base">
+              <div class="point-bullet" style="background:rgba(251,191,36,0.2);color:#fbbf24">③</div>
+              <div>
+                <b style="color:#fbbf24;font-size:13.5px">Vừa Là Người Lãnh Đạo, Vừa Là Người Đầy Tớ</b>
+                <p style="font-size:12.5px;color:#f1f5f9;line-height:1.45;margin-top:2px">Luận điểm cốt lõi của Bác: Đảng lãnh đạo nhưng tuyệt đối không đứng trên nhân dân; quyền lực vì nhân dân.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow-diagram-box">
+            <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;font-weight:700;">SƠ ĐỒ QUAN HỆ QUYỀN LỰC VÌ DÂN:</div>
+            <div class="flow-step flow-step-dang">ĐẢNG (Lãnh đạo đường lối)</div>
+            <div class="flow-arrow">⬇ Tổ chức & thể chế hóa</div>
+            <div class="flow-step flow-step-nn">NHÀ NƯỚC (Quản lý, thực thi pháp luật)</div>
+            <div class="flow-arrow">⬇ Phục vụ & mang lại ấm no</div>
+            <div class="flow-step flow-step-dan">NHÂN DÂN (Làm chủ, giám sát, kiểm tra ngược lại Đảng & Nhà nước)</div>
+          </div>
+        `,
+        transition: 'Để xứng đáng với vai trò người lãnh đạo và người đầy tớ trung thành, Đảng bắt buộc phải giữ trọn sự trong sạch, vững mạnh.',
+        cam: { x: 0, y: 5, z: 20 },
+        tgt: { x: 0, y: 2, z: 0 }
+      },
+      {
+        id: 2,
+        themeClass: 'theme-2',
+        tag: 'TRẠM 03 · BẢN CHẤT ĐẠO ĐỨC & TRONG SẠCH',
+        title: 'Đảng Phải Trong Sạch, Vững Mạnh: <span class="acc-green">"Đạo Đức & Văn Minh"</span>',
+        summary: 'Tại lễ kỷ niệm 30 năm thành lập Đảng, Chủ tịch Hồ Chí Minh đúc kết: "Đảng ta là đạo đức, là văn minh". Một Đảng nắm quyền lực muốn giữ vững vai trò lãnh đạo lâu dài thì phải giữ trọn niềm tin của quần chúng nhân dân.',
+        layoutClass: 'layout-convergence-strip',
+        secTitle: 'CHUẨN MỰC "ĐẢNG LÀ ĐẠO ĐỨC, LÀ VĂN MINH"',
+        renderContent: () => `
+          <div class="convergence-grid">
+            <div class="conv-box">
+              <div class="conv-tag">01 · Vì Sao Phải Trong Sạch?</div>
+              <div class="conv-desc">Đảng cầm quyền chi phối vận mệnh dân tộc. Năng lực và phẩm chất của Đảng ảnh hưởng trực tiếp đến sự tồn vong của chế độ.</div>
+            </div>
+            <div class="conv-box">
+              <div class="conv-tag">02 · Đảng Là Đạo Đức</div>
+              <div class="conv-desc">Mục đích duy nhất là giải phóng dân tộc, mang lại ấm no cho dân; không có lợi ích riêng. Cán bộ rèn luyện Cần, Kiệm, Liêm, Chính.</div>
+            </div>
+            <div class="conv-box">
+              <div class="conv-tag">03 · Đảng Là Văn Minh</div>
+              <div class="conv-desc">Đại diện cho trí tuệ, danh dự dân tộc; tiên phong, hoạt động nghiêm túc trong khuôn khổ Hiến pháp & pháp luật, vì hòa bình nhân loại.</div>
+            </div>
+            <div class="conv-box">
+              <div class="conv-tag">04 · Giữ Trọn Niềm Tin Của Dân</div>
+              <div class="conv-desc">Đảng phải gần dân, hiểu dân, dựa vào dân để xây dựng Đảng và kiên quyết chống suy thoái, tham ô, lãng phí, quan liêu.</div>
+            </div>
+          </div>
+          <div style="margin-top:12px;padding:10px 14px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:12px;font-size:12.5px;color:#a7f3d0">
+            💬 <i>"Một Đảng giấu giếm khuyết điểm của mình là một Đảng hỏng. Một Đảng có gan thừa nhận khuyết điểm của mình... đó là một Đảng tiến bộ, mạnh dạn, chắc chắn, chân chính."</i> — <b>Hồ Chí Minh</b>
+          </div>
+        `,
+        transition: 'Bản chất đạo đức và sự trong sạch ấy được hiện thực hóa qua hệ thống các nguyên tắc hoạt động nghiêm cẩn và công tác cán bộ chiến lược.',
+        cam: { x: 0, y: 7, z: 23 },
+        tgt: { x: 0, y: 1.5, z: 0 }
+      },
+      {
+        id: 3,
+        themeClass: 'theme-3',
+        tag: 'TRẠM 04 · NGUYÊN TẮC HOẠT ĐỘNG & CÔNG TÁC CÁN BỘ',
+        title: 'Hệ Thống Nguyên Tắc Hoạt Động & <span class="acc-gold">"Cán Bộ Là Cái Gốc"</span>',
+        summary: 'Tập trung dân chủ, tự phê bình và phê bình, kỷ luật nghiêm minh và thường xuyên tự chỉnh đốn là vũ khí sắc bén giúp Đảng chống lại sự thoái hóa, xây dựng đội ngũ cán bộ vừa hồng vừa chuyên.',
+        layoutClass: 'layout-trio-pillars',
+        secTitle: '5 NGUYÊN TẮC SỐNG CÒN & CÔNG TÁC CÁN BỘ',
+        renderContent: () => `
+          <div class="pillars-grid">
+            <div class="pillar-box">
+              <div class="pillar-icon">⚖️</div>
+              <div class="pillar-name" style="color:#38bdf8">Tập Trung Dân Chủ</div>
+              <div class="pillar-desc">Phát huy dân chủ cao độ khi thảo luận; khi có quyết định chung thì thống nhất chấp hành nghiêm túc.</div>
+            </div>
+            <div class="pillar-box">
+              <div class="pillar-icon">🔍</div>
+              <div class="pillar-name" style="color:#fbbf24">Tự Phê Bình & Phê Bình</div>
+              <div class="pillar-desc">"Thang thuốc hay nhất" chữa khuyết điểm, giúp nhau tiến bộ và củng cố khối đoàn kết nội bộ.</div>
+            </div>
+            <div class="pillar-box">
+              <div class="pillar-icon">🛡️</div>
+              <div class="pillar-name" style="color:#c084fc">Kỷ Luật & Tự Chỉnh Đốn</div>
+              <div class="pillar-desc">Kỷ luật nghiêm minh, tự giác; thường xuyên chỉnh đốn để quét sạch chủ nghĩa cá nhân và tham ô.</div>
+            </div>
+          </div>
+          <div class="marx-warning-banner" style="background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.35);color:#fef08a">
+            🌟 <b>Luận điểm then chốt:</b> Hồ Chí Minh căn dặn: <i>"Cán bộ là cái gốc của mọi công việc. Muôn việc thành công hoặc thất bại, đều do cán bộ tốt hoặc kém."</i> Phải chống bệnh bè phái, cục bộ, địa phương trong công tác cán bộ.
+          </div>
+        `,
+        transition: 'Tư tưởng về một Đảng trong sạch, kiên quyết chống tham ô, lãng phí chính là cơ sở lý luận trực tiếp dẫn tới công cuộc "Đốt lò" hiện nay.',
+        cam: { x: 0, y: 4, z: 19 },
+        tgt: { x: 0, y: 0.5, z: 0 }
+      },
+      {
+        id: 4,
+        themeClass: 'theme-4',
+        tag: 'TRẠM 05 · KHÁI NIỆM & BẢN CHẤT CHIẾN DỊCH',
+        title: 'Chiến Dịch "Đốt Lò" Là Gì & <span class="acc-red">Ai Khởi Xướng?</span>',
+        summary: '"Đốt lò" là cách gọi hình ảnh giàu tính biểu tượng của công cuộc Phòng, chống tham nhũng, lãng phí, tiêu cực — một cuộc chỉnh đốn Đảng mang tính bước ngoặt gắn liền với vai trò chỉ đạo của Tổng Bí thư Nguyễn Phú Trọng từ năm 2013.',
+        layoutClass: 'layout-map-legend',
+        secTitle: 'TÊN GỌI CHÍNH THỨC, NGƯỜI KHỞI XƯỚNG & 5 MỤC TIÊU',
+        renderContent: () => `
+          <div>
+            <div class="region-row">
+              <div class="region-icon">🔥</div>
+              <div class="region-info">
+                <div class="region-title">Tên gọi đầy đủ, chính thức:</div>
+                <div class="region-desc">Chiến dịch <b>Phòng, chống tham nhũng, lãng phí và tiêu cực</b> (không phải tên chương trình mang chữ "Đốt lò").</div>
+              </div>
+            </div>
+            <div class="region-row">
+              <div class="region-icon">🏛️</div>
+              <div class="region-info">
+                <div class="region-title">Ai khởi xướng chiến dịch "Đốt lò"?</div>
+                <div class="region-desc">Gắn liền với <b>Tổng Bí thư Nguyễn Phú Trọng</b> từ mốc thành lập Ban Chỉ đạo Trung ương về PCTN (01/02/2013). Lưu ý: PCTN đã có từ trước, nhưng từ 2013 được tổ chức quyết liệt và mạnh mẽ vượt bậc.</div>
+              </div>
+            </div>
+            <div class="region-row">
+              <div class="region-icon">🎯</div>
+              <div class="region-info">
+                <div class="region-title">5 Mục tiêu chiến lược then chốt:</div>
+                <div class="region-desc">① Phát hiện vi phạm ➔ ② Xử lý nghiêm minh ➔ ③ Thu hồi tài sản ➔ ④ Làm trong sạch bộ máy ➔ ⑤ Răn đe, phòng ngừa.</div>
+              </div>
+            </div>
+            <div class="gso-stat-chip" style="background:rgba(239,68,68,0.12);border-color:rgba(239,68,68,0.35);color:#fca5a5">
+              ⚖️ <b>Nguyên tắc thép:</b> <i>"Không có vùng cấm, không có ngoại lệ, bất kể người đó là ai!"</i>
+            </div>
+          </div>
+        `,
+        transition: 'Với quyết tâm chính trị chưa từng có, chiến dịch đã tạo ra những thành quả mang tính đột phá và tiếp tục phát triển mạnh mẽ.',
+        cam: { x: 0, y: 9, z: 23 },
+        tgt: { x: 0, y: 1, z: 0 }
+      },
+      {
+        id: 5,
+        themeClass: 'theme-5',
+        tag: 'TRẠM 06 · KẾT QUẢ THỰC TIỄN & BƯỚC PHÁT TRIỂN',
+        title: 'Thành Quả Đột Phá & <span class="acc-purple">Bước Mở Rộng 2025 – 2026</span>',
+        summary: 'Hàng vạn vụ án kinh tế, tham nhũng nghiêm trọng bị xử lý nghiêm minh, thu hồi tài sản bước ngoặt. Năm 2025 - 2026, chiến dịch tiếp tục không ngừng nghỉ, mở rộng sang trọng tâm chống lãng phí.',
+        layoutClass: 'layout-job-matrix',
+        secTitle: 'SỐ LIỆU ĐẠI ÁN 2013-2020 & HOẠT ĐỘNG BAN CHỈ ĐẠO 2026',
+        renderContent: () => `
+          <div class="stat-badge-grid">
+            <div class="stat-badge-card">
+              <div class="stat-badge-num">14.300+</div>
+              <div class="stat-badge-label">Vụ án tham nhũng, kinh tế được khởi tố (2013–2020)</div>
+            </div>
+            <div class="stat-badge-card">
+              <div class="stat-badge-num">24.410+</div>
+              <div class="stat-badge-label">Bị can bị điều tra, xử lý nghiêm minh không vùng cấm</div>
+            </div>
+          </div>
+
+          <div class="job-grid">
+            <div class="job-card job-shipper">
+              <div class="job-header"><span>⚖️</span><span>Xử lý cán bộ cấp cao</span></div>
+              <div class="job-desc">Nhiều Ủy viên Bộ Chính trị, Bộ trưởng, tướng lĩnh bị truy tố, khẳng định tính nghiêm minh tuyệt đối của pháp luật.</div>
+            </div>
+            <div class="job-card job-coder">
+              <div class="job-header"><span>💰</span><span>Thu hồi tài sản thất thoát</span></div>
+              <div class="job-desc">Chuyển biến vượt bậc: Không chỉ phạt tù mà ưu tiên tối đa việc thu hồi tiền của, đất đai về cho ngân sách Nhà nước.</div>
+            </div>
+            <div class="job-card job-ecom">
+              <div class="job-header"><span>⚡</span><span>Không dừng lại</span></div>
+              <div class="job-desc">Công cuộc PCTN không kết thúc khi Tổng Bí thư Nguyễn Phú Trọng qua đời, mà tiếp tục được duy trì xuyên suốt.</div>
+            </div>
+            <div class="job-card job-kols">
+              <div class="job-header"><span>🚀</span><span>Mở rộng sang "Chống lãng phí"</span></div>
+              <div class="job-desc">2025–2026: Trọng tâm mở rộng chống lãng phí các dự án nghìn tỷ đình trệ. Phiên họp thứ 30 diễn ra ngày 18/6/2026.</div>
+            </div>
+          </div>
+        `,
+        transition: 'Từ những kết quả vượt bậc và thực tiễn phong phú đó, nhóm tiến hành đánh giá khách quan, chỉ ra hạn chế và đề xuất các giải pháp căn cơ.',
+        cam: { x: 0, y: 6, z: 23 },
+        tgt: { x: 0, y: 0.8, z: 0 }
+      },
+      {
+        id: 6,
+        themeClass: 'theme-6',
+        tag: 'TRẠM 07 · ĐÁNH GIÁ, KIẾN NGHỊ & KẾT LUẬN',
+        title: 'Đánh Giá Khách Quan, <span class="acc-gold">5 Kiến Nghị Đột Phá</span> & Kết Luận',
+        summary: 'Kết hợp biện chứng giữa "Xây" và "Chống". Đột phá từ xử lý sang phòng ngừa triệt để — "Không để củi có cơ hội bén lửa" — hiện thực hóa trọn vẹn tư tưởng Hồ Chí Minh về xây dựng Đảng trong sạch, vững mạnh.',
+        layoutClass: 'layout-grand-summary',
+        secTitle: 'THÀNH TỰU, 4 HẠN CHẾ, 5 ĐỀ XUẤT "KHÔNG BÉN LỬA" & CÂU KẾT',
+        renderContent: () => `
+          <div>
+            <div class="summary-decree">
+              <div class="decree-num">1</div>
+              <div class="decree-text"><b>5 Thành tựu nổi bật:</b> Tăng tính nghiêm minh; tăng tính răn đe; nâng cao ý thức toàn dân; đẩy mạnh thu hồi tài sản; gắn liền với xây dựng, chỉnh đốn Đảng.</div>
+            </div>
+            <div class="summary-decree">
+              <div class="decree-num">2</div>
+              <div class="decree-text"><b>4 Hạn chế cần cải thiện:</b> ① Phòng ngừa phải đi trước (bịt lỗ hổng thể chế) ➔ ② Hoàn thiện luật pháp ➔ ③ Tối ưu thu hồi tài sản ➔ ④ Nâng cao trách nhiệm người đứng đầu.</div>
+            </div>
+            <div class="summary-decree">
+              <div class="decree-num">3</div>
+              <div class="decree-text"><b>5 Kiến nghị của nhóm:</b> ① Hoàn thiện pháp luật đấu thầu, đất đai ➔ ② Minh bạch tài sản, dòng tiền ➔ ③ Kiểm soát quyền lực ➔ ④ <i>"Không để củi có cơ hội bén lửa"</i> ➔ ⑤ Quy trách nhiệm người đứng đầu.</div>
+            </div>
+
+            <div class="flow-diagram-box" style="margin-top:12px;">
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;font-weight:700;">LIÊN HỆ VỚI TƯ TƯỞNG HỒ CHÍ MINH:</div>
+              <div style="font-size:12.5px;color:#cbd5e1;line-height:1.6;">
+                Đảng trong sạch, vững mạnh ➔ Cán bộ có đạo đức (Cần, Kiệm, Liêm, Chính) ➔ Chống chủ nghĩa cá nhân, tham ô, lãng phí ➔ Phục vụ nhân dân.
+              </div>
+            </div>
+
+            <div class="speech-tip-box" style="background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.3);color:#fef3c7;">
+              🎤 <b>LỜI NÓI KẾT BÀI THUYẾT TRÌNH:</b><br>
+              <i>"Qua việc nghiên cứu tư tưởng Hồ Chí Minh về Đảng Cộng sản Việt Nam và liên hệ với công cuộc phòng, chống tham nhũng, lãng phí, tiêu cực hiện nay, nhóm chúng em khẳng định một tổ chức muốn giữ được vai trò lãnh đạo thì không chỉ cần năng lực mà phải thường xuyên tự chỉnh đốn, giữ gìn kỷ luật, đạo đức và sự gắn bó máu thịt với nhân dân. Đây cũng chính là ý nghĩa thực tiễn sâu sắc của tư tưởng Hồ Chí Minh!"</i>
+            </div>
+          </div>
+        `,
+        transition: 'Bài thuyết trình chuyên đề hoàn tất. Xin chân thành cảm ơn Thầy Cô và các bạn đã chú ý lắng nghe!',
+        cam: { x: 0, y: 6, z: 21 },
+        tgt: { x: 0, y: 1, z: 0 }
+      }
+    ];
+
+    /* ═══════════════════════════════════════════════════════════
+       2. INTERACTIVE RAYCASTING INSPECT DICTIONARY
+       ═══════════════════════════════════════════════════════════ */
+    const INSPECT_DATA = {
+      'hoi_nghi_1930': {
+        icon: '📜',
+        badge: 'HỘI NGHỊ THÀNH LẬP ĐẢNG',
+        title: 'Hội Nghị Cửu Long (Hương Cảng, 1930)',
+        body: 'Dưới sự chủ trì của lãnh tụ Nguyễn Ái Quốc, các tổ chức cộng sản đã xóa bỏ chia rẽ, thống nhất thành Đảng Cộng sản Việt Nam và thông qua Cương lĩnh chính trị đầu tiên.',
+        footer: 'Dấu mốc chấm dứt thời kỳ khủng hoảng về đường lối cứu nước kéo dài hàng thập kỷ.'
+      },
+      'dai_bieu_5_7': {
+        icon: '❓',
+        badge: 'TRANH LUẬN LỊCH SỬ',
+        title: 'Thành Phần Đại Biểu: 5 Hay 7 Người?',
+        body: '5 người là số đại biểu chính thức (Nguyễn Ái Quốc + 2 ĐDCSĐ + 2 ANCSĐ). 7 người là cách tính cộng thêm 2 đồng chí giúp việc Hội nghị (Lê Hồng Sơn và Hồ Tùng Mậu). Báo cáo tóm tắt Hội nghị ghi 5 đại biểu.',
+        footer: 'Lời khuyên vấn đáp: Chọn đáp án 5 đại biểu chính thức.'
+      },
+      'tinh_tat_yeu': {
+        icon: '⭐',
+        badge: 'QUY LUẬT LÃNH ĐẠO',
+        title: 'Tính Tất Yếu Của Đảng Cộng Sản Việt Nam',
+        body: 'Hồ Chí Minh khẳng định cách mạng muốn thắng lợi trước hết phải có Đảng cách mệnh để trong thì vận động và tổ chức dân chúng, ngoài thì liên lạc với vô sản giai cấp mọi nơi.',
+        footer: 'Đảng là nhân tố quyết định hàng đầu đưa cách mạng đi đến thắng lợi.'
+      },
+      'nguoi_day_to': {
+        icon: '🤝',
+        badge: 'QUAN HỆ VỚI DÂN',
+        title: 'Vừa Là Người Lãnh Đạo, Vừa Là Người Đầy Tớ',
+        body: 'Đảng không phải là một tổ chức đứng trên nhân dân để "cai trị", mà là tổ chức tận tụy phụng sự nhân dân, chịu trách nhiệm và chịu sự giám sát tối cao của nhân dân.',
+        footer: 'Quyền lực thuộc về nhân dân; cán bộ là công bộc của dân.'
+      },
+      'dang_dao_duc': {
+        icon: '💎',
+        badge: 'BẢN CHẤT ĐẠO ĐỨC',
+        title: '"Đảng Ta Là Đạo Đức"',
+        body: 'Mục đích duy nhất của Đảng là giải phóng dân tộc, mang lại cơm no áo ấm cho nhân dân; ngoài lợi ích của Tổ quốc và nhân dân, Đảng không có lợi ích nào khác.',
+        footer: 'Cán bộ phải suốt đời rèn luyện: Cần, Kiệm, Liêm, Chính, Chí công vô tư.'
+      },
+      'dang_van_minh': {
+        icon: '🏛️',
+        badge: 'BẢN CHẤT VĂN MINH',
+        title: '"Đảng Ta Là Văn Minh"',
+        body: 'Đảng tiêu biểu cho lương tri, trí tuệ và danh dự của dân tộc; hoạt động nghiêm túc trong khuôn khổ Hiến pháp và pháp luật, hòa nhịp cùng trào lưu tiến bộ của thời đại.',
+        footer: 'Lấy chủ nghĩa Mác – Lênin và tư tưởng Hồ Chí Minh làm kim chỉ nam hành động.'
+      },
+      'tap_trung_dan_chu': {
+        icon: '⚖️',
+        badge: 'NGUYÊN TẮC CỐT LÕI',
+        title: 'Nguyên Tắc Tập Trung Dân Chủ',
+        body: 'Dân chủ để mở rộng trí tuệ tập thể, để mọi đảng viên bày tỏ chính kiến. Tập trung để thống nhất ý chí và hành động; thiểu số phục tùng đa số, cấp dưới phục tùng cấp trên.',
+        footer: 'Tập trung trên cơ sở dân chủ và dân chủ dưới sự chỉ đạo tập trung.'
+      },
+      'tu_phe_binh': {
+        icon: '🔍',
+        badge: 'VŨ KHÍ TỰ CHỈNH ĐỐN',
+        title: 'Tự Phê Bình Và Phê Bình',
+        body: 'Bác ví tự phê bình và phê bình như việc rửa mặt mỗi ngày để tránh bụi bặm; mục đích là trị bệnh cứu người, giúp nhau cùng tiến bộ, củng cố tình đồng chí thương yêu lẫn nhau.',
+        footer: 'Phê bình việc chứ không phê bình người; không được giấu giếm khuyết điểm.'
+      },
+      'can_bo_cai_goc': {
+        icon: '🌱',
+        badge: 'CÔNG TÁC CÁN BỘ',
+        title: '"Cán Bộ Là Cái Gốc Của Mọi Công Việc"',
+        body: 'Muôn việc thành công hay thất bại đều do cán bộ tốt hay kém. Cán bộ phải có đủ cả Đức và Tài, trong đó Đức là gốc; kiên quyết chống tham ô, lãng phí, quan liêu, chạy chức chạy quyền.',
+        footer: 'Cán bộ phải đi trước, làng nước theo sau.'
+      },
+      'ban_chat_dot_lo': {
+        icon: '🔥',
+        badge: 'KHÁI NIỆM & HÌNH TƯỢNG',
+        title: 'Bản Chất Chiến Dịch "Đốt Lò"',
+        body: 'Hình ảnh ẩn dụ cho tinh thần quyết liệt: "Lò đã nóng lên rồi thì củi tươi vào đây cũng phải cháy". Tên gọi pháp lý chính thức là: Công tác phòng, chống tham nhũng, lãng phí và tiêu cực.',
+        footer: 'Khởi đầu từ yêu cầu làm trong sạch, vững mạnh nội bộ Đảng.'
+      },
+      'nguyen_phu_trong': {
+        icon: '👤',
+        badge: 'VAI TRÒ KHỞI XƯỚNG',
+        title: 'Tổng Bí Thư Nguyễn Phú Trọng (01/02/2013)',
+        body: 'Chiến dịch gắn liền với vai trò Trưởng Ban Chỉ đạo Trung ương về PCTN của Tổng Bí thư Nguyễn Phú Trọng. Từ năm 2013, công tác PCTN chuyển biến về chất với quyết tâm chính trị cao độ.',
+        footer: 'Di sản chỉnh đốn Đảng to lớn được toàn Đảng, toàn dân ghi nhận.'
+      },
+      'khong_vung_cam': {
+        icon: '⚔️',
+        badge: 'NGUYÊN TẮC THÉP',
+        title: '"Không Có Vùng Cấm, Không Có Ngoại Lệ"',
+        body: 'Mọi hành vi tham nhũng, tiêu cực dù ở cương vị nào, đương chức hay về hưu đều bị điều tra và xử lý nghiêm minh trước pháp luật, lấy lại niềm tin trọn vẹn của quần chúng nhân dân.',
+        footer: 'Nghiêm trị để răn đe, giáo dục và cảnh tỉnh toàn hệ thống.'
+      },
+      'so_lieu_2013_2020': {
+        icon: '📊',
+        badge: 'KẾT QUẢ KỶ LỤC',
+        title: 'Đại Án 2013 – 2020: 14.300 Vụ / 24.410 Bị Can',
+        body: 'Hàng loạt vụ đại án kinh tế lớn (Việt Á, Chuyến bay giải cứu, Vạn Thịnh Phát...) được đưa ra ánh sáng, xử lý nghiêm cả cán bộ lãnh đạo cấp cao trong Bộ Chính trị, Trung ương Đảng.',
+        footer: 'Bảo vệ thể chế và minh bạch hóa môi trường đầu tư kinh tế.'
+      },
+      'thu_hoi_tai_san': {
+        icon: '💰',
+        badge: 'KHẮC PHỤC HẬU QUẢ',
+        title: 'Thu Hồi Hàng Chục Nghìn Tỷ Đồng Thất Thoát',
+        body: 'Chuyển biến mang tính bước ngoặt: Tố tụng đi đôi với phong tỏa tài sản, truy nguyên dòng tiền, thu hồi tài sản tham nhũng nộp lại ngân sách Nhà nước đạt tỷ lệ cao chưa từng thấy.',
+        footer: 'Đo lường tính thực chất và hiệu quả kinh tế của công cuộc chống tham nhũng.'
+      },
+      'chong_lang_phi_2026': {
+        icon: '🚀',
+        badge: 'GIAI ĐOẠN 2025 – 2026',
+        title: 'Tiếp Tục & Mở Rộng Sang Chống Lãng Phí',
+        body: 'Chiến dịch không dừng lại mà mở rộng quyết liệt sang chống lãng phí tài sản công, đất đai, dự án treo nghìn tỷ. Phiên họp thứ 30 diễn ra ngày 18/6/2026 tiếp tục duy trì đà đấu tranh mạnh mẽ.',
+        footer: 'Thực hành tiết kiệm, chống lãng phí theo đúng lời dạy của Chủ tịch Hồ Chí Minh.'
+      },
+      'nam_kien_nghi': {
+        icon: '💡',
+        badge: 'GIẢI PHÁP ĐỘT PHÁ',
+        title: '5 Kiến Nghị: "Không Để Củi Có Cơ Hội Bén Lửa"',
+        body: 'Chuyển trọng tâm từ "xử lý sau sai phạm" sang "phòng ngừa chủ động": Hoàn thiện luật đất đai, đấu thầu; minh bạch tài sản; kiểm soát quyền lực; gắn trách nhiệm người đứng đầu.',
+        footer: 'Bịt kín kẽ hở thể chế để tham nhũng không thể, không dám, không muốn.'
+      },
+      'so_do_tu_tuong_hcm': {
+        icon: '🇻🇳',
+        badge: 'KẾT NỐI LÝ LUẬN & THỰC TIỄN',
+        title: 'Liên Hệ Sâu Sắc Với Tư Tưởng Hồ Chí Minh',
+        body: 'Toàn bộ chiến dịch "Đốt lò" chính là sự vận dụng sáng tạo và cụ thể hóa tư tưởng Hồ Chí Minh về xây dựng Đảng trong sạch, vững mạnh, quét sạch chủ nghĩa cá nhân vì hạnh phúc nhân dân.',
+        footer: 'Đoàn kết, kỷ cương, liêm chính — Vì một Việt Nam dân giàu, nước mạnh, văn minh.'
+      }
+    };
+
+    /* ═══════════════════════════════════════════════════════════
+       3. DANH SÁCH HOTSPOTS TƯƠNG TÁC TRÊN TỪNG BỨC TRANH
+       ═══════════════════════════════════════════════════════════ */
+    const STATION_HOTSPOTS = [
+      // Trạm 01: Hội nghị Cửu Long (Hương Cảng, 1930) - 5 đại biểu & Cờ Đảng
+      [
+        { key: 'hoi_nghi_1930', x: 50.0, y: 56.0, label: 'Bàn Hội Nghị & Nguyễn Ái Quốc', color: '#38bdf8' },
+        { key: 'dai_bieu_5_7',   x: 75.0, y: 62.0, label: 'Giải Mã: 5 Hay 7 Đại Biểu?', color: '#fbbf24' }
+      ],
+      // Trạm 02: Ngôi sao dẫn đường & Khối đại đoàn kết toàn dân
+      [
+        { key: 'tinh_tat_yeu',   x: 50.0, y: 15.0, label: 'Ngôi Sao & Sứ Mệnh Lãnh Đạo', color: '#38bdf8' },
+        { key: 'nguoi_day_to',   x: 50.0, y: 80.0, label: 'Người Đầy Tớ Của Nhân Dân', color: '#f43f5e' },
+        { key: 'so_do_quyen_luc', x: 18.0, y: 24.0, label: 'Công Lý & Pháp Quyền Vì Dân', color: '#fbbf24' }
+      ],
+      // Trạm 03: 4 Trụ Cần - Kiệm - Liêm - Chính & Hoa Sen pha lê
+      [
+        { key: 'dang_dao_duc',   x: 23.0, y: 44.0, label: 'Trụ Cần - Kiệm (Đạo Đức)', color: '#10b981' },
+        { key: 'dang_van_minh',  x: 77.0, y: 44.0, label: 'Trụ Liêm - Chính (Văn Minh)', color: '#38bdf8' },
+        { key: 'giu_niem_tin',   x: 50.0, y: 55.0, label: 'Đóa Sen Tinh Khiết: Niềm Tin', color: '#fbbf24' }
+      ],
+      // Trạm 04: Cây cội nguồn cán bộ & Vòng tròn tập trung dân chủ
+      [
+        { key: 'can_bo_cai_goc',    x: 50.0, y: 64.0, label: 'Cán Bộ Là Cái Gốc Của Mọi Việc', color: '#fbbf24' },
+        { key: 'tap_trung_dan_chu', x: 48.0, y: 22.0, label: 'Vành Đai: Tập Trung Dân Chủ', color: '#38bdf8' },
+        { key: 'tu_phe_binh',       x: 64.0, y: 36.0, label: 'Tự Phê Bình & Phê Bình', color: '#c084fc' }
+      ],
+      // Trạm 05: Lò lửa chống tham nhũng & Biểu tượng Không có vùng cấm
+      [
+        { key: 'ban_chat_dot_lo',  x: 50.0, y: 65.0, label: 'Lò Lửa Chống Tham Nhũng', color: '#ef4444' },
+        { key: 'khong_vung_cam',   x: 50.0, y: 22.0, label: 'Không Có Vùng Cấm, Ngoại Lệ', color: '#fbbf24' },
+        { key: 'nguyen_phu_trong', x: 14.0, y: 78.0, label: 'TBT Nguyễn Phú Trọng (2013)', color: '#38bdf8' }
+      ],
+      // Trạm 06: Màn hình kiểm toán 14.300+ vụ án & Kho bạc thu hồi tài sản
+      [
+        { key: 'so_lieu_2013_2020', x: 38.0, y: 32.0, label: '14.300+ Hồ Sơ Vụ Án Xử Lý', color: '#38bdf8' },
+        { key: 'thu_hoi_tai_san',   x: 84.0, y: 55.0, label: 'Kho Bạc: Thu Hồi Tài Sản', color: '#fbbf24' },
+        { key: 'chong_lang_phi_2026', x: 34.0, y: 72.0, label: 'Hồi Sinh Dự Án Trọng Điểm', color: '#c084fc' }
+      ],
+      // Trạm 07: Lá chắn Không để bén lửa & Toàn cảnh kỷ nguyên mới
+      [
+        { key: 'nam_kien_nghi',      x: 34.0, y: 52.0, label: 'Lá Chắn: Không Để Củi Bén Lửa', color: '#fbbf24' },
+        { key: 'so_do_tu_tuong_hcm', x: 68.0, y: 36.0, label: 'Kỷ Nguyên Mới Phồn Vinh 2026', color: '#38bdf8' }
+      ]
+    ];
+
+    let scene, camera, renderer, currentStation = 0;
+    let clock = null;
+    let bgParticles = null;
+    let targetMouse = { x: 0, y: 0 };
+    let currentMouse = { x: 0, y: 0 };
+
+    function initThree() {
+      const container = document.getElementById('canvas-container');
+      const W = window.innerWidth, H = window.innerHeight;
+
+      clock = new THREE.Clock();
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(50, W / H, 0.1, 1000);
+      camera.position.set(0, 0, 30);
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(W, H);
+      container.appendChild(renderer.domElement);
+
+      createCosmicParticleSystem();
+
+      window.addEventListener('resize', onWindowResize);
+      window.addEventListener('pointermove', onPointerMove);
+      window.addEventListener('keydown', onKeyDown);
+      setupCardDrag();
+
+      switchStationScene(0, false);
+      animate();
+    }
+
+    /* ── HỆ THỐNG HẠT SAO (NHẸ NHÀNG, KHÔNG GÂY RỐI MẮT) ── */
+    function createCosmicParticleSystem() {
+      // Tạo canvas texture hình tròn mờ dần → render như sao thay vì ô vuông
+      const texCanvas = document.createElement('canvas');
+      texCanvas.width = 32; texCanvas.height = 32;
+      const ctx = texCanvas.getContext('2d');
+      const grad = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+      grad.addColorStop(0,   'rgba(255,255,255,1)');
+      grad.addColorStop(0.4, 'rgba(255,255,255,0.6)');
+      grad.addColorStop(1,   'rgba(255,255,255,0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 32, 32);
+      const starTexture = new THREE.CanvasTexture(texCanvas);
+
+      // 400 hạt (giảm từ 1200), 3 tông trắng/xanh nhạt
+      const pCount = 400;
+      const geom = new THREE.BufferGeometry();
+      const pos = new Float32Array(pCount * 3);
+      const colors = new Float32Array(pCount * 3);
+      const palette = [
+        new THREE.Color(0xffffff),  // trắng thuần
+        new THREE.Color(0xdde8f4),  // trắng xanh nhạt
+        new THREE.Color(0xb0cce0),  // xanh lạnh nhạt
+      ];
+
+      for (let i = 0; i < pCount; i++) {
+        const i3 = i * 3;
+        pos[i3]     = (Math.random() - 0.5) * 85;
+        pos[i3 + 1] = (Math.random() - 0.5) * 55;
+        pos[i3 + 2] = (Math.random() - 0.5) * 60;
+
+        const c = palette[Math.floor(Math.random() * palette.length)];
+        colors[i3] = c.r; colors[i3 + 1] = c.g; colors[i3 + 2] = c.b;
+      }
+
+      geom.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      geom.setAttribute('color',    new THREE.BufferAttribute(colors, 3));
+
+      const mat = new THREE.PointsMaterial({
+        size: 0.55,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.45,
+        blending: THREE.AdditiveBlending,
+        map: starTexture,   // texture tròn → không còn ô vuông
+        depthWrite: false,
+      });
+      bgParticles = new THREE.Points(geom, mat);
+      scene.add(bgParticles);
+
+      // energyStreaks đã được xóa (không còn vệt vuông vàng lớn)
+    }
+
+    /* ── TÍNH TOÁN VÙNG HIỂN THỊ CHÍNH XÁC CỦA TRANH NỀN (COVER ALIGNMENT) ── */
+    function updateHotspotOverlayBounds() {
+      const overlay = document.getElementById('hotspot-overlay');
+      if (!overlay) return;
+
+      const bW = window.innerWidth + 80;
+      const bH = window.innerHeight + 80;
+      const imgAspect = 1376 / 768;
+      const containerAspect = bW / bH;
+
+      let renderW, renderH, renderLeft, renderTop;
+      if (containerAspect > imgAspect) {
+        renderW = bW;
+        renderH = bW / imgAspect;
+        renderLeft = -40;
+        renderTop = -40 + (bH - renderH) / 2;
+      } else {
+        renderH = bH;
+        renderW = bH * imgAspect;
+        renderLeft = -40 + (bW - renderW) / 2;
+        renderTop = -40;
+      }
+
+      overlay.style.left = `${renderLeft}px`;
+      overlay.style.top = `${renderTop}px`;
+      overlay.style.width = `${renderW}px`;
+      overlay.style.height = `${renderH}px`;
+    }
+
+    /* ── HIỂN THỊ CÁC ĐIỂM INTERACTIVE HOTSPOTS TRÊN BỨC TRANH ── */
+    function renderHotspots(stationIdx) {
+      updateHotspotOverlayBounds();
+      const container = document.getElementById('hotspot-overlay');
+      container.innerHTML = '';
+
+      const hotspots = STATION_HOTSPOTS[stationIdx] || [];
+      hotspots.forEach(node => {
+        const el = document.createElement('div');
+        el.className = 'hotspot-node';
+        el.style.left = node.x + '%';
+        el.style.top = node.y + '%';
+        el.style.setProperty('--node-color', node.color);
+
+        el.innerHTML = `
+          <div class="hotspot-beacon">
+            <div class="hotspot-ring"></div>
+            <div class="hotspot-ring delayed"></div>
+            <div class="hotspot-core"></div>
+          </div>
+          <div class="hotspot-label">${node.label}</div>
+        `;
+
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const inspectInfo = INSPECT_DATA[node.key];
+          if (inspectInfo) {
+            showInspect(inspectInfo, e.clientX, e.clientY, node.key);
+          }
+        });
+
+        el.addEventListener('mouseenter', (e) => {
+          const inspectInfo = INSPECT_DATA[node.key];
+          if (inspectInfo) {
+            showInspect(inspectInfo, e.clientX, e.clientY, node.key);
+          }
+        });
+
+        container.appendChild(el);
+      });
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       4. STATION TRANSITION & DYNAMIC LAYOUT/THEME CONTROLLER
+       ═══════════════════════════════════════════════════════════ */
+    function switchStationScene(targetIndex, animateCam = true) {
+      currentStation = targetIndex;
+      isCardManuallyMoved = false;
+      closeInspect();
+      const sData = STATIONS[targetIndex];
+
+      // 1. Body class kept constant (single theme)
+      document.body.className = 'theme-0';
+
+      // 2. Chuyển đổi bức tranh nền điện ảnh (Cinematic Backdrop)
+      document.querySelectorAll('.backdrop-slide').forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === targetIndex);
+      });
+
+      // 3. Render các Hotspots tương tác của trạm mới
+      renderHotspots(targetIndex);
+
+      // 4. Header & Progress Update
+      document.getElementById('current-station-num').textContent = String(targetIndex + 1).padStart(2, '0');
+      document.getElementById('progress-line').style.width = ((targetIndex + 1) / STATIONS.length * 100) + '%';
+
+
+      // 5. Cập nhật Station Navigation Pills
+      document.querySelectorAll('.station-pill-btn').forEach((btn, idx) => {
+        btn.classList.toggle('active', idx === targetIndex);
+      });
+
+      // 6. Dock Controls Update
+      const btnPrev = document.getElementById('btn-prev');
+      const btnNext = document.getElementById('btn-next');
+      if (btnPrev) btnPrev.disabled = (targetIndex === 0);
+      if (btnNext) {
+        const nextText = (targetIndex === STATIONS.length - 1) ? 'Khởi Động Lại ↺' : `Tiếp Theo: Trạm 0${targetIndex + 2} ➔`;
+        btnNext.innerHTML = `<span>${nextText}</span>`;
+      }
+
+      const hudNextBtn = document.getElementById('hud-btn-next');
+      if (hudNextBtn) {
+        hudNextBtn.textContent = (targetIndex === STATIONS.length - 1) ? 'Khởi Động Lại Từ Đầu ↺' : `Chuyển Sang Trạm 0${targetIndex + 2} ➔`;
+      }
+
+      // 7. Update Primary Card (Top-Left)
+      document.getElementById('p-tag').innerHTML = sData.tag;
+      document.getElementById('p-title').innerHTML = sData.title;
+      document.getElementById('p-summary').textContent = sData.summary;
+
+      // 8. Update Secondary Card with Custom Layout & Content
+      const secCard = document.getElementById('card-secondary');
+      secCard.className = 'glass-card ' + sData.layoutClass;
+      document.getElementById('s-title').innerHTML = sData.secTitle;
+      document.getElementById('s-content').innerHTML = sData.renderContent();
+
+      // 9. Update Transition Banner
+      document.getElementById('trans-text').textContent = sData.transition;
+
+      // 10. Close Inspect Card
+      closeInspect();
+
+      // 11. Subtle Camera & Fade Transition
+      if (animateCam) {
+        const fade = document.getElementById('fade-overlay');
+        fade.classList.add('fading');
+        setTimeout(() => {
+          fade.classList.remove('fading');
+        }, 320);
+      }
+    }
+
+    function nextStation() {
+      const nxt = (currentStation < STATIONS.length - 1) ? currentStation + 1 : 0;
+      switchStationScene(nxt, true);
+    }
+
+    function prevStation() {
+      if (currentStation > 0) switchStationScene(currentStation - 1, true);
+    }
+
+    function goToStation(idx) {
+      if (idx >= 0 && idx < STATIONS.length && idx !== currentStation) {
+        switchStationScene(idx, true);
+      }
+    }
+
+    // Auto-play feature removed
+
+    /* ═══════════════════════════════════════════════════════════
+       5. PARALLAX 3D TƯƠNG TÁC CHUỘT & INSPECT CARD
+       ═══════════════════════════════════════════════════════════ */
+    function onPointerMove(e) {
+      targetMouse.x = (e.clientX / window.innerWidth - 0.5) * 2;
+      targetMouse.y = (e.clientY / window.innerHeight - 0.5) * 2;
+
+      // Cập nhật parallax biến CSS trên slide active
+      const paraX = -targetMouse.x * 20 + 'px';
+      const paraY = -targetMouse.y * 14 + 'px';
+      document.documentElement.style.setProperty('--para-x', paraX);
+      document.documentElement.style.setProperty('--para-y', paraY);
+    }
+
+    function toggleHud() {
+      const hud = document.getElementById('narrative-hud');
+      const icon = document.getElementById('hud-toggle-icon');
+      if (!hud) return;
+      hud.classList.toggle('collapsed');
+      if (icon) {
+        icon.textContent = hud.classList.contains('collapsed') ? '▶' : '◀';
+      }
+    }
+
+    let isCardManuallyMoved = false;
+
+    function updateInspectCardPosition(nodeKey) {
+      const card = document.getElementById('inspect-card');
+      if (!card || isCardManuallyMoved) return;
+
+      const currentDots = (STATION_HOTSPOTS && STATION_HOTSPOTS[currentStation]) ? STATION_HOTSPOTS[currentStation] : [];
+      const activeDot = currentDots.find(d => d.key === nodeKey);
+
+      // Kiểm tra xem trên trạm hiện tại có điểm tương tác nào nằm ở góc dưới-phải (x >= 65% và y >= 45%) không
+      const hasBottomRightDot = currentDots.some(d => d.x >= 65 && d.y >= 45);
+
+      let placeAtTop = false;
+
+      if (activeDot) {
+        if (activeDot.x >= 60 && activeDot.y >= 45) {
+          // Điểm đang bấm/soi nằm ở góc dưới-phải: đưa thẻ lên GÓC TRÊN-PHẢI để không che điểm
+          placeAtTop = true;
+        } else if (activeDot.x >= 60 && activeDot.y < 45) {
+          // Điểm ở góc trên-phải: đưa thẻ xuống GÓC DƯỚI-PHẢI để không che điểm
+          placeAtTop = false;
+        } else {
+          // Điểm ở giữa hoặc bên trái (ví dụ Cầu Lao Động).
+          // Nếu trạm này có điểm ở góc dưới-phải (như Tháp Trí Thức), đưa thẻ lên TRÊN để tránh che điểm đó!
+          placeAtTop = hasBottomRightDot;
+        }
+      } else {
+        placeAtTop = hasBottomRightDot;
+      }
+
+      card.classList.remove('pos-top', 'pos-bottom');
+      card.style.left = '';
+      card.style.right = '32px';
+      if (placeAtTop) {
+        card.classList.add('pos-top');
+        card.style.top = '86px';
+        card.style.bottom = 'auto';
+      } else {
+        card.classList.add('pos-bottom');
+        card.style.bottom = '90px';
+        card.style.top = 'auto';
+      }
+    }
+
+    function showInspect(data, clientX, clientY, nodeKey) {
+      const card = document.getElementById('inspect-card');
+      if (!card || !data) return;
+      document.getElementById('ins-icon').textContent = data.icon;
+      document.getElementById('ins-badge').textContent = data.badge;
+      document.getElementById('ins-title').textContent = data.title;
+      document.getElementById('ins-body').innerHTML = data.body;
+      document.getElementById('ins-footer').innerHTML = '💡 ' + data.footer;
+
+      updateInspectCardPosition(nodeKey);
+      card.classList.add('active');
+    }
+
+    function toggleInspectPosition(e) {
+      if (e) e.stopPropagation();
+      const card = document.getElementById('inspect-card');
+      if (!card) return;
+      isCardManuallyMoved = false; // Reset kéo thủ công khi bấm nút chuyển đổi
+      card.style.left = '';
+      card.style.right = '32px';
+      if (card.classList.contains('pos-top') || card.style.top === '86px') {
+        card.classList.remove('pos-top');
+        card.classList.add('pos-bottom');
+        card.style.top = 'auto';
+        card.style.bottom = '90px';
+      } else {
+        card.classList.remove('pos-bottom');
+        card.classList.add('pos-top');
+        card.style.bottom = 'auto';
+        card.style.top = '86px';
+      }
+    }
+
+    function setupCardDrag() {
+      const card = document.getElementById('inspect-card');
+      const header = card ? card.querySelector('.inspect-top') : null;
+      if (!card || !header) return;
+
+      header.style.cursor = 'grab';
+
+      let isDragging = false;
+      let startX, startY, origLeft, origTop;
+
+      header.addEventListener('mousedown', (e) => {
+        if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
+        isDragging = true;
+        isCardManuallyMoved = true;
+        header.style.cursor = 'grabbing';
+        const rect = card.getBoundingClientRect();
+        startX = e.clientX;
+        startY = e.clientY;
+        origLeft = rect.left;
+        origTop = rect.top;
+
+        // Chuyển sang định vị tuyệt đối theo px để người dùng kéo thả tự do
+        card.style.left = origLeft + 'px';
+        card.style.top = origTop + 'px';
+        card.style.right = 'auto';
+        card.style.bottom = 'auto';
+        card.classList.remove('pos-top', 'pos-bottom');
+
+        const onMouseMove = (ev) => {
+          if (!isDragging) return;
+          const dx = ev.clientX - startX;
+          const dy = ev.clientY - startY;
+          const newLeft = Math.max(10, Math.min(window.innerWidth - card.offsetWidth - 10, origLeft + dx));
+          const newTop = Math.max(10, Math.min(window.innerHeight - card.offsetHeight - 10, origTop + dy));
+          card.style.left = newLeft + 'px';
+          card.style.top = newTop + 'px';
+        };
+
+        const onMouseUp = () => {
+          isDragging = false;
+          header.style.cursor = 'grab';
+          window.removeEventListener('mousemove', onMouseMove);
+          window.removeEventListener('mouseup', onMouseUp);
+        };
+
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+      });
+    }
+
+    function closeInspect() {
+      const card = document.getElementById('inspect-card');
+      if (card) card.classList.remove('active');
+    }
+
+    function onKeyDown(e) {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        nextStation();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevStation();
+      } else if (e.key >= '1' && e.key <= '7') {
+        e.preventDefault();
+        goToStation(parseInt(e.key, 10) - 1);
+      } else if (e.key === 'h' || e.key === 'H') {
+        toggleHud();
+      } else if (e.key === 'f' || e.key === 'F') {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen?.();
+        } else {
+          document.exitFullscreen?.();
+        }
+      } else if (e.key === 'Escape') {
+        closeInspect();
+      }
+    }
+
+    function onWindowResize() {
+      const W = window.innerWidth, H = window.innerHeight;
+      camera.aspect = W / H;
+      camera.updateProjectionMatrix();
+      renderer.setSize(W, H);
+      updateHotspotOverlayBounds();
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       6. ORGANIC 3D CANVAS & PARALLAX ANIMATION LOOP
+       ═══════════════════════════════════════════════════════════ */
+    function animate() {
+      requestAnimationFrame(animate);
+
+      const t = clock ? clock.getElapsedTime() : 0;
+
+      // Smooth mouse lerping for natural camera drift
+      currentMouse.x += (targetMouse.x - currentMouse.x) * 0.05;
+      currentMouse.y += (targetMouse.y - currentMouse.y) * 0.05;
+
+      camera.position.x = currentMouse.x * 2.8;
+      camera.position.y = -currentMouse.y * 1.8;
+      camera.lookAt(0, 0, 0);
+
+      // Bụi sao vũ trụ xoay và trôi nhẹ nhàng
+      if (bgParticles) {
+        bgParticles.rotation.y = t * 0.025;
+        bgParticles.rotation.x = Math.sin(t * 0.02) * 0.08;
+      }
+
+      // energyStreaks removed
+
+      renderer.render(scene, camera);
+    }
+
+    window.addEventListener('DOMContentLoaded', initThree);
+  </script>
+</body>
+</html>
+
+

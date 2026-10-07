@@ -1,0 +1,22 @@
+{
+  "name": "hcm202-tu-tuong-ho-chi-minh-va-dot-lo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tư Tưởng Hồ Chí Minh Về Đảng Cộng Sản Việt Nam & Đánh Giá Chiến Dịch “Đốt Lò” | HCM202 3D Interactive",
+  "scripts": {
+    "start": "serve .",
+    "dev": "serve .",
+    "build": "echo 'Static HTML ready for deployment'"
+  },
+  "keywords": [
+    "threejs",
+    "3d",
+    "hcm202",
+    "interactive-web"
+  ],
+  "author": "kim xuan hieu",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

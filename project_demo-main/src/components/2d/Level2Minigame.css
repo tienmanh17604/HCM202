@@ -1,0 +1,129 @@
+.level2-wrapper {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255,255,255,0.05);
+    border-radius: 24px;
+    overflow: hidden;
+    background: #111;
+    transform-origin: center center;
+    font-family: 'Times New Roman', Times, serif;
+    color: #e6edf5;
+}
+
+.level2-world {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-color: #1a1a24;
+    z-index: 1;
+}
+
+.l2-entity { 
+    position: absolute; 
+    z-index: 85; 
+    transform: translate(-50%, -50%); 
+    transition: top 0.05s linear, left 0.05s linear;
+}
+
+/* --- Nhân vật --- */
+.l2-char-container { position: relative; width: 40px; height: 60px; }
+.l2-char-name-tag {
+    position: absolute; top: -35px; left: 50%; transform: translateX(-50%);
+    white-space: nowrap; font-size: 13px; font-weight: bold; color: #f39c12;
+    text-shadow: 1px 1px 2px black; pointer-events: none; z-index: 100; opacity: 0.9;
+}
+
+/* Player */
+#l2-player .l2-char-head { position: absolute; top: 2px; left: 11px; width: 18px; height: 18px; background: #f39c12; border: 1.5px solid #fff; border-radius: 50%; z-index: 15; }
+#l2-player .l2-char-body { position: absolute; top: 18px; left: 8px; width: 24px; height: 26px; background: #2980b9; border: 2px solid #fff; border-radius: 4px; z-index: 10; }
+#l2-player .l2-char-arm { position: absolute; width: 6px; height: 16px; background: #2980b9; border: 1px solid #fff; border-radius: 3px; top: 2px; }
+#l2-player .l2-arm-left { left: -7px; transform-origin: top center; }
+#l2-player .l2-arm-right { right: -7px; transform-origin: top center; }
+#l2-player .l2-char-leg { position: absolute; width: 8px; height: 14px; background: #1c5982; border: 1px solid #fff; border-radius: 3px; top: 42px; }
+#l2-player .l2-leg-left { left: 11px; transform-origin: top center; }
+#l2-player .l2-leg-right { right: 11px; transform-origin: top center; }
+
+/* NPC Hegel */
+#l2-hegel .l2-char-head { position: absolute; top: 2px; left: 11px; width: 18px; height: 18px; background: #d4a373; border: 1.5px solid #fff; border-radius: 50%; z-index: 15; }
+#l2-hegel .l2-char-body { position: absolute; top: 18px; left: 8px; width: 24px; height: 26px; background: #333; border: 2px solid #555; border-radius: 4px; z-index: 10; }
+#l2-hegel .l2-char-arm { position: absolute; width: 6px; height: 16px; background: #333; border: 1px solid #555; border-radius: 3px; top: 2px; }
+#l2-hegel .l2-arm-left { left: -7px; transform-origin: top center; }
+#l2-hegel .l2-arm-right { right: -7px; transform-origin: top center; }
+#l2-hegel .l2-char-leg { position: absolute; width: 8px; height: 14px; background: #222; border: 1px solid #444; border-radius: 3px; top: 42px; }
+#l2-hegel .l2-leg-left { left: 11px; transform-origin: top center; }
+#l2-hegel .l2-leg-right { right: 11px; transform-origin: top center; }
+.l2-hair-hegel { position: absolute; top: 0; left: 8px; width: 24px; height: 18px; background: #555; border-radius: 50% 50% 0 0; z-index: 14; }
+
+.l2-walking .l2-leg-left { animation: l2-leg-swing 0.4s infinite alternate; }
+.l2-walking .l2-leg-right { animation: l2-leg-swing 0.4s infinite alternate-reverse; }
+.l2-walking .l2-arm-left { animation: l2-arm-swing 0.4s infinite alternate-reverse; }
+.l2-walking .l2-arm-right { animation: l2-arm-swing 0.4s infinite alternate; }
+
+@keyframes l2-leg-swing { from { transform: rotate(-25deg); } to { transform: rotate(25deg); } }
+@keyframes l2-arm-swing { from { transform: rotate(-20deg); } to { transform: rotate(20deg); } }
+
+/* Objects */
+.l2-energy-block { width: 24px; height: 24px; background: #00f2fe; border: 2px solid #fff; border-radius: 4px; box-shadow: 0 0 15px #00f2fe; animation: l2-float 2s infinite alternate ease-in-out; }
+.l2-machine { width: 80px; height: 100px; background: linear-gradient(to bottom, #2b5876, #4e4376); border: 3px solid #111; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 10px; }
+.l2-machine-screen { width: 60px; height: 30px; background: #000; border: 2px solid #333; margin-bottom: 10px; border-radius: 4px; display: flex; justify-content: center; align-items: center; color: #0f0; font-family: monospace; font-weight: bold; }
+.l2-machine-bar-container { width: 60px; height: 10px; background: #222; border: 1px solid #000; border-radius: 5px; overflow: hidden; }
+.l2-machine-bar { width: 0%; height: 100%; background: #00f2fe; transition: width 0.5s ease; }
+
+.l2-pedestal { width: 50px; height: 50px; background: #444; border: 3px solid #222; border-radius: 4px; position: relative; }
+.l2-pedestal-ring { position: absolute; top: -10px; left: -10px; width: 70px; height: 70px; border: 2px dashed rgba(255,255,255,0.2); border-radius: 50%; animation: l2-spin 10s linear infinite; }
+.l2-orb { width: 24px; height: 24px; border-radius: 50%; position: absolute; top: -30px; left: 10px; box-shadow: 0 0 20px currentColor; animation: l2-float 2s infinite alternate ease-in-out; }
+.l2-white-orb { color: #fff; background: #fff; }
+.l2-black-orb { color: #8a2be2; background: #111; border: 2px solid #8a2be2; box-shadow: 0 0 20px #8a2be2; }
+.l2-key-obj { width: 30px; height: 15px; background: gold; border-radius: 2px; position: absolute; top: -20px; left: 7px; box-shadow: 0 0 15px gold; }
+
+/* Các đối tượng mới */
+.l2-safe { width: 40px; height: 50px; background: #555; border: 3px solid #222; border-radius: 4px; box-shadow: inset 0 0 10px #111, 0 5px 15px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; position: relative; }
+.l2-safe::after { content: ''; width: 12px; height: 12px; background: #ff3333; border-radius: 50%; border: 2px solid #222; box-shadow: 0 0 5px #ff3333; }
+.l2-safe.unlocked::after { background: #33ff33; box-shadow: 0 0 10px #33ff33; }
+
+.l2-rock { width: 60px; height: 40px; background: #6b7280; border-radius: 12px 18px 10px 14px; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.5), 0 10px 15px rgba(0,0,0,0.6); position: relative; transition: transform 0.3s ease; }
+.l2-rock.moved { transform: translateX(-40px); }
+
+/* Option trắc nghiệm */
+.l2-dialog-option {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; margin-bottom: 8px; border-radius: 8px; cursor: pointer; color: #d1d5db; transition: all 0.2s; font-size: 16px;
+}
+.l2-dialog-option:hover { background: rgba(255,255,255,0.1); }
+.l2-dialog-option.active { background: rgba(251, 146, 60, 0.2); border-color: #fb923c; color: #fff; transform: translateX(8px); }
+
+@keyframes l2-float { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+@keyframes l2-spin { 100% { transform: rotate(360deg); } }
+
+/* Cửa */
+#l2-exit-door {
+    position: absolute; width: 140px; height: 60px;
+    background: linear-gradient(to bottom, #1a1a1a, #000); border: 4px solid #333; border-bottom: none;
+    left: 400px; top: 0; transform: translateX(-50%); z-index: 20;
+    display: flex; justify-content: center; align-items: center;
+    color: #555; font-weight: bold; font-family: 'Segoe UI', Arial, sans-serif;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8); transition: all 0.5s;
+}
+#l2-exit-door.unlocked { border-color: #f1d07a; color: #f1d07a; box-shadow: 0 0 40px rgba(241, 208, 122, 0.4); }
+.l2-door-lock-container { position: absolute; right: -45px; top: 12px; font-size: 32px; text-shadow: 0 0 10px rgba(255,255,255,0.3); z-index: 21; }
+
+/* UI */
+#l2-interact-prompt { 
+    position: absolute; background: linear-gradient(135deg, #f1d07a, #d6b25e); color: #1b1b24; font-weight: bold; 
+    padding: 4px 12px; border: 1px solid rgba(0,0,0,0.35); border-radius: 999px; 
+    font-size: 13px; z-index: 200; pointer-events: none; display: none; animation: l2-bounce 1s infinite; 
+    transform: translate(-50%, -100%); box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+@keyframes l2-bounce { 0%, 100% { transform: translate(-50%, -10px); } 50% { transform: translate(-50%, -15px); } }
+
+#l2-flash-msg { 
+    position: absolute; top: 12%; left: 50%; transform: translateX(-50%); 
+    background: rgba(214, 178, 94, 0.95); color: #1b1b24; padding: 12px 36px; border-radius: 999px; 
+    z-index: 2000; font-weight: bold; font-size: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+    font-family: 'Segoe UI', Arial, sans-serif; letter-spacing: normal; text-transform: uppercase;
+    transition: opacity 0.3s; pointer-events: none; opacity: 0;
+}

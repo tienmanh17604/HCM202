@@ -1,0 +1,327 @@
+[
+  {
+    "id": 1,
+    "text": "Vấn đề cơ bản của triết học gồm mấy mặt?",
+    "options": [
+      "1 mặt",
+      "2 mặt",
+      "3 mặt",
+      "4 mặt"
+    ],
+    "correctAnswerIndex": 1,
+    "rewardItemId": null,
+    "branchId": 1
+  },
+  {
+    "id": 2,
+    "text": "Trường phái triết học nào cho rằng vật chất có trước, ý thức có sau, thế giới vật chất tồn tại khách quan?",
+    "options": [
+      "Chủ nghĩa duy vật",
+      "Chủ nghĩa duy tâm",
+      "Nhị nguyên luận",
+      "Thuyết không thể biết (Agnosticism)"
+    ],
+    "correctAnswerIndex": 0,
+    "rewardItemId": null,
+    "branchId": 1
+  },
+  {
+    "id": 3,
+    "text": "Hình thức phản ánh thế giới cao nhất, năng động và sáng tạo nhất chỉ có ở con người là gì?",
+    "options": [
+      "Phản ánh vật lý, hóa học",
+      "Phản ánh sinh học",
+      "Phản xạ có điều kiện",
+      "Ý thức"
+    ],
+    "correctAnswerIndex": 3,
+    "rewardItemId": null,
+    "branchId": 1
+  },
+  {
+    "id": 4,
+    "text": "Theo V.I. Lênin, vật chất là một phạm trù triết học dùng để chỉ cái gì tồn tại độc lập với ý thức con người?",
+    "options": [
+      "Mọi sự vật, hiện tượng",
+      "Thực tại khách quan",
+      "Ý niệm tuyệt đối",
+      "Cấu trúc nguyên tử"
+    ],
+    "correctAnswerIndex": 1,
+    "rewardItemId": "stone",
+    "branchId": 1
+  },
+  {
+    "id": 5,
+    "text": "Nguồn gốc tự nhiên của ý thức bao gồm bộ óc người và yếu tố nào?",
+    "options": [
+      "Hoạt động lao động",
+      "Ngôn ngữ giao tiếp",
+      "Thế giới khách quan tác động lên bộ óc",
+      "Đời sống xã hội"
+    ],
+    "correctAnswerIndex": 2,
+    "rewardItemId": null,
+    "branchId": 1
+  },
+  {
+    "id": 6,
+    "text": "Yếu tố trực tiếp và quan trọng nhất quyết định đến sự ra đời và phát triển của ý thức con người là gì?",
+    "options": [
+      "Sự tiến hóa của não bộ",
+      "Lao động và ngôn ngữ",
+      "Bản năng sinh tồn",
+      "Quá trình chọn lọc tự nhiên"
+    ],
+    "correctAnswerIndex": 1,
+    "rewardItemId": null,
+    "branchId": 1
+  },
+  {
+    "id": 7,
+    "text": "Bản chất của ý thức là hình ảnh chủ quan của...",
+    "options": [
+      "Trí tuệ nhân tạo",
+      "Thế giới khách quan",
+      "Cảm xúc con người",
+      "Những khái niệm trừu tượng"
+    ],
+    "correctAnswerIndex": 1,
+    "rewardItemId": null,
+    "branchId": 1
+  },
+  {
+    "id": 8,
+    "text": "Theo chủ nghĩa duy vật biện chứng, mối quan hệ giữa vật chất và ý thức được thể hiện như thế nào?",
+    "options": [
+      "Ý thức sinh ra vật chất và quyết định vật chất.",
+      "Vật chất và ý thức tồn tại độc lập, không tác động qua lại.",
+      "Vật chất quyết định ý thức, ý thức có tính độc lập tương đối và tác động trở lại vật chất.",
+      "Cả hai đồng thời sinh ra và quyết định lẫn nhau."
+    ],
+    "correctAnswerIndex": 2,
+    "rewardItemId": "mirror",
+    "branchId": 1
+  },
+  {
+    "id": 9,
+    "text": "Phép biện chứng duy vật được xây dựng trên cơ sở mấy nguyên lý cơ bản?",
+    "options": [
+      "1 nguyên lý",
+      "2 nguyên lý (Mối liên hệ phổ biến và Sự phát triển)",
+      "3 nguyên lý",
+      "4 nguyên lý"
+    ],
+    "correctAnswerIndex": 1,
+    "rewardItemId": null,
+    "branchId": 2
+  },
+  {
+    "id": 10,
+    "text": "Mọi sự vật, hiện tượng trong vũ trụ có tồn tại cô lập, tách rời nhau không?",
+    "options": [
+      "Có, chúng tồn tại biệt lập hoàn toàn.",
+      "Chỉ liên hệ với nhau khi có sự tác động của con người.",
+      "Không, chúng luôn liên hệ, quy định và tác động qua lại lẫn nhau.",
+      "Tùy thuộc vào không gian và thời gian mà chúng có thể hoàn toàn cô lập."
+    ],
+    "correctAnswerIndex": 2,
+    "rewardItemId": "rope",
+    "branchId": 2
+  },
+  {
+    "id": 11,
+    "text": "Khái niệm nào dùng để chỉ khoảng giới hạn mà ở đó sự thay đổi về lượng chưa làm thay đổi căn bản về chất của sự vật?",
+    "options": [
+      "Điểm nút",
+      "Bước nhảy",
+      "Độ",
+      "Phủ định"
+    ],
+    "correctAnswerIndex": 2,
+    "rewardItemId": null,
+    "branchId": 2
+  },
+  {
+    "id": 12,
+    "text": "Theo quy luật Lượng - Chất, mọi sự phát triển đều bắt đầu từ sự tích lũy dần dần về mặt nào?",
+    "options": [
+      "Về Chất",
+      "Về Lượng",
+      "Về Mâu thuẫn",
+      "Về Thuộc tính"
+    ],
+    "correctAnswerIndex": 1,
+    "rewardItemId": "water",
+    "branchId": 2
+  },
+  {
+    "id": 13,
+    "text": "Động lực, nguồn gốc bên trong của sự vận động và phát triển là do đâu?",
+    "options": [
+      "Sự tác động cơ học từ bên ngoài.",
+      "Việc giải quyết các mâu thuẫn bên trong sự vật.",
+      "Ý muốn chủ quan của con người.",
+      "Sự biến đổi liên tục của không gian."
+    ],
+    "correctAnswerIndex": 1,
+    "rewardItemId": null,
+    "branchId": 2
+  },
+  {
+    "id": 14,
+    "text": "Các mặt đối lập bên trong sự vật luôn ở trong trạng thái nào?",
+    "options": [
+      "Chỉ thống nhất với nhau.",
+      "Chỉ đấu tranh bài trừ nhau.",
+      "Vừa thống nhất, vừa đấu tranh với nhau.",
+      "Tồn tại song song không tương tác."
+    ],
+    "correctAnswerIndex": 2,
+    "rewardItemId": null,
+    "branchId": 2
+  },
+  {
+    "id": 15,
+    "text": "Quy luật nào vạch ra khuynh hướng của sự phát triển theo hình xoáy ốc?",
+    "options": [
+      "Quy luật Lượng - Chất",
+      "Quy luật Mâu thuẫn",
+      "Quy luật Phủ định của phủ định",
+      "Quy luật Giá trị"
+    ],
+    "correctAnswerIndex": 2,
+    "rewardItemId": null,
+    "branchId": 2
+  },
+  {
+    "id": 16,
+    "text": "Sự chuyển hóa cơ bản về chất của sự vật do những sự thay đổi về lượng trước đó tạo ra (tại Điểm nút) được gọi là gì?",
+    "options": [
+      "Sự tiến hóa",
+      "Bước nhảy",
+      "Sự đột biến",
+      "Quá trình tuần hoàn"
+    ],
+    "correctAnswerIndex": 1,
+    "rewardItemId": "fire",
+    "branchId": 2
+  },
+  {
+    "id": 17,
+    "text": "Hoạt động nào là nền tảng, là cơ sở quyết định sự tồn tại và phát triển của xã hội loài người?",
+    "options": [
+      "Đấu tranh giai cấp",
+      "Nghiên cứu khoa học",
+      "Sản xuất vật chất",
+      "Sáng tạo nghệ thuật"
+    ],
+    "correctAnswerIndex": 2,
+    "rewardItemId": null,
+    "branchId": 3
+  },
+  {
+    "id": 18,
+    "text": "Trong lực lượng sản xuất, yếu tố nào là động và cách mạng nhất, thường xuyên thay đổi nhất?",
+    "options": [
+      "Người lao động",
+      "Công cụ lao động",
+      "Đối tượng lao động",
+      "Phương tiện quản lý"
+    ],
+    "correctAnswerIndex": 1,
+    "rewardItemId": null,
+    "branchId": 3
+  },
+  {
+    "id": 19,
+    "text": "Con người (người lao động) và tư liệu sản xuất kết hợp với nhau tạo thành khái niệm nào?",
+    "options": [
+      "Lực lượng sản xuất",
+      "Quan hệ sản xuất",
+      "Cơ sở hạ tầng",
+      "Phương thức sản xuất"
+    ],
+    "correctAnswerIndex": 0,
+    "rewardItemId": null,
+    "branchId": 3
+  },
+  {
+    "id": 20,
+    "text": "Quy luật cơ bản nhất chi phối toàn bộ tiến trình lịch sử nhân loại là quy luật Quan hệ sản xuất phải phù hợp với tính chất và trình độ của...",
+    "options": [
+      "Trí tuệ con người",
+      "Kiến trúc thượng tầng",
+      "Lực lượng sản xuất",
+      "Nhà nước và Pháp luật"
+    ],
+    "correctAnswerIndex": 2,
+    "rewardItemId": "gear",
+    "branchId": 3
+  },
+  {
+    "id": 21,
+    "text": "Toàn bộ những quan hệ sản xuất hợp thành cơ cấu kinh tế của một xã hội được gọi là gì?",
+    "options": [
+      "Hình thái kinh tế - xã hội",
+      "Cơ sở hạ tầng",
+      "Kiến trúc thượng tầng",
+      "Tồn tại xã hội"
+    ],
+    "correctAnswerIndex": 1,
+    "rewardItemId": null,
+    "branchId": 3
+  },
+  {
+    "id": 22,
+    "text": "Hệ thống nhà nước, pháp luật, đạo đức, tôn giáo trong xã hội được gọi chung là gì?",
+    "options": [
+      "Cơ sở hạ tầng",
+      "Quan hệ sản xuất",
+      "Ý thức cá nhân",
+      "Kiến trúc thượng tầng"
+    ],
+    "correctAnswerIndex": 3,
+    "rewardItemId": null,
+    "branchId": 3
+  },
+  {
+    "id": 23,
+    "text": "Trong mối quan hệ biện chứng giữa Cơ sở hạ tầng và Kiến trúc thượng tầng, yếu tố nào đóng vai trò quyết định?",
+    "options": [
+      "Kiến trúc thượng tầng quyết định Cơ sở hạ tầng.",
+      "Cơ sở hạ tầng quyết định Kiến trúc thượng tầng.",
+      "Cả hai có vai trò quyết định ngang nhau.",
+      "Do nhà nước quyết định."
+    ],
+    "correctAnswerIndex": 1,
+    "rewardItemId": null,
+    "branchId": 3
+  },
+  {
+    "id": 24,
+    "text": "Theo C.Mác, sự phát triển của các hình thái kinh tế - xã hội là một quá trình...",
+    "options": [
+      "Tuân theo ý muốn chủ quan của con người.",
+      "Lịch sử - tự nhiên",
+      "Hoàn toàn ngẫu nhiên.",
+      "Bị chi phối bởi các thế lực siêu nhiên."
+    ],
+    "correctAnswerIndex": 1,
+    "rewardItemId": "scroll",
+    "branchId": 3
+  },
+  {
+    "id": 25,
+    "text": "Luận điểm nổi tiếng của C.Mác khẳng định sự khác biệt căn bản giữa Triết học Mác với các trào lưu triết học trước đó là: \"Các nhà triết học trước kia chỉ giải thích thế giới bằng nhiều cách khác nhau, song vấn đề là...\"",
+    "options": [
+      "Hiểu biết thế giới",
+      "Làm chủ thế giới",
+      "Cải tạo thế giới",
+      "Bảo vệ thế giới"
+    ],
+    "correctAnswerIndex": 2,
+    "rewardItemId": null,
+    "branchId": 4
+  }
+]
